@@ -1,0 +1,8 @@
+{
+  "COMMON": {
+    "log" : {
+      "fileName" : "api-error-logs.log",
+      "logsDirectory" : "logs"
+    }
+  }
+}
