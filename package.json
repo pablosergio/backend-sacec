@@ -28,8 +28,10 @@
     "express": "^4.13.4",
     "express-validator": "^2.19.1",
     "express-winston": "^1.2.0",
+    "pg": "^6.1.0",
     "pg-promise": "^5.4.7",
     "q": "^1.4.1",
+    "sequelize": "^3.27.0",
     "underscore": "^1.8.3",
     "winston": "^2.2.0"
   }
