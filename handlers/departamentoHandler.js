@@ -12,7 +12,7 @@ var departamentoHandler = function() {
 };
 
 function handleGetDepartamentosRequest(req, res, next) {
-    var service = departamentoService({user: 'postgres', password:'postgres'});
+    var service = departamentoService({user: req.user.username, password: req.user.password});
     service.getAllDepartamentos().then(function(result){
         res.status(201).send({
             success: true,

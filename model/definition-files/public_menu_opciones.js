@@ -19,7 +19,7 @@ module.exports = model;
 
 // Some utility methods:
 util.getRelation("opcionPadreFkeys").onDelete = 'CASCADE'; 
-util.getAttribute("menuId").comment = 'This is the comment'; 
+util.getAttribute("menuOpcionId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -32,9 +32,9 @@ module.exports = {
         timestamps: false
     },
     attributes: {
-        "menuId": {
+        "menuOpcionId": {
             type: Seq.INTEGER,
-            field: "menu_id",
+            field: "menu_opcion_id",
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
@@ -45,9 +45,13 @@ module.exports = {
             field: "opcion",
             allowNull: false
         },
-        "link": {
+        "href": {
             type: Seq.STRING(250),
-            field: "link"
+            field: "href"
+        },
+        "alias": {
+            type: Seq.STRING(250),
+            field: "alias"
         },
         "tooltip": {
             type: Seq.STRING(250),
@@ -88,13 +92,13 @@ module.exports = {
         }
     }, {
         type: "hasMany",
-        model: "public.usuarioOpciones",
+        model: "public.usuarioMenuOpciones",
         schema: "public",
-        table: "usuario_opciones",
+        table: "usuario_menu_opciones",
         source: "generator",
         details: {
-            as: "usuarioOpcionesMenuIdFkeys",
-            foreignKey: "menu_id",
+            as: "usuarioMenuOpcionesMenuOpcionIdFkeys",
+            foreignKey: "menu_opcion_id",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
@@ -117,10 +121,10 @@ module.exports = {
         table: "usuarios",
         source: "generator",
         details: {
-            as: "relatedUsuarioOpcionesMenuIdFkeyLogins",
-            foreignKey: "menu_id",
-            otherKey: "login",
-            through: "usuario_opciones",
+            as: "relatedUsuarioMenuOpcionesMenuOpcionIdFkeyUsernames",
+            foreignKey: "menu_opcion_id",
+            otherKey: "username",
+            through: "usuario_menu_opciones",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }

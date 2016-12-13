@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("usuarioOpcionesLoginFkeys").onDelete = 'CASCADE'; 
-util.getAttribute("login").comment = 'This is the comment'; 
+util.getRelation("usuarioMenuOpcionesUsernameFkeys").onDelete = 'CASCADE'; 
+util.getAttribute("username").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -32,9 +32,9 @@ module.exports = {
         timestamps: false
     },
     attributes: {
-        "login": {
+        "username": {
             type: Seq.TEXT,
-            field: "login",
+            field: "username",
             primaryKey: true,
             allowNull: false,
             unique: "usuarios_pkey"
@@ -61,13 +61,13 @@ module.exports = {
     },
     relations: [{
         type: "hasMany",
-        model: "public.usuarioOpciones",
+        model: "public.usuarioMenuOpciones",
         schema: "public",
-        table: "usuario_opciones",
+        table: "usuario_menu_opciones",
         source: "generator",
         details: {
-            as: "usuarioOpcionesLoginFkeys",
-            foreignKey: "login",
+            as: "usuarioMenuOpcionesUsernameFkeys",
+            foreignKey: "username",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
@@ -78,10 +78,10 @@ module.exports = {
         table: "menu_opciones",
         source: "generator",
         details: {
-            as: "usuarioOpcionesLoginFkeyMenus",
-            foreignKey: "login",
-            otherKey: "menu_id",
-            through: "usuario_opciones",
+            as: "usuarioMenuOpcionesUsernameFkeyMenuOpcions",
+            foreignKey: "username",
+            otherKey: "menu_opcion_id",
+            through: "usuario_menu_opciones",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }

@@ -27,11 +27,11 @@
             "relatedOpcionPadre": null
         },
         "belongsToMany": {
-            "relatedUsuarioOpcionesMenuIdFkeyLogins": null
+            "relatedUsuarioMenuOpcionesMenuOpcionIdFkeyUsernames": null
         },
         "hasMany": {
             "opcionPadreFkeys": null,
-            "usuarioOpcionesMenuIdFkeys": null
+            "usuarioMenuOpcionesMenuOpcionIdFkeys": null
         }
     },
     "public.modeloDepto": {
@@ -75,18 +75,18 @@
             "deudaExpensasTarifaIdFkeys": null
         }
     },
-    "public.usuarioOpciones": {
+    "public.usuarioMenuOpciones": {
         "belongsTo": {
-            "menu": null,
-            "relatedLogin": null
+            "menuOpcion": null,
+            "relatedUsername": null
         }
     },
     "public.usuarios": {
         "belongsToMany": {
-            "usuarioOpcionesLoginFkeyMenus": null
+            "usuarioMenuOpcionesUsernameFkeyMenuOpcions": null
         },
         "hasMany": {
-            "usuarioOpcionesLoginFkeys": null
+            "usuarioMenuOpcionesUsernameFkeys": null
         }
     }
 }
