@@ -1,7 +1,7 @@
 TOKEN_SECRET=developmentSessionSecret
 DB_USER=postgres
 DB_PASS=postgres
-DATA_BASE=molles
+DATA_BASE=sacec
 DB_DIALECT=postgres
 DB_PORT=5432
 DB_SCHEMA=public

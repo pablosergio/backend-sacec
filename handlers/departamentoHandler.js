@@ -2,6 +2,9 @@
  * Created by Sergio on 10/12/2016.
  */
 var departamentoService = require('../services/departamentoService.js');
+var tokenService = require('../services/tokenService');
+var jwt         = require('jsonwebtoken');
+
 var departamentoHandler = function() {
     //this.createStudent = handleCreateStudentRequest;
     this.getDepartamentos = handleGetDepartamentosRequest;
@@ -12,11 +15,20 @@ var departamentoHandler = function() {
 };
 
 function handleGetDepartamentosRequest(req, res, next) {
-    var service = departamentoService({user: req.user.username, password: req.user.password});
-    service.getAllDepartamentos().then(function(result){
+    var token = tokenService.getToken(req);
+    var payload = jwt.decode(token, {complete: true}).payload;
+    var filter = {};
+    var paging = {
+        limit: req.query.limit || 1000,
+        start: req.query.start || 0
+    }
+
+    var service = departamentoService({username: payload.username, password: payload.password});
+    service.getAllDepartamentos(filter, paging).then(function(result){
         res.status(201).send({
             success: true,
-            data:result
+            rows: result.rows,
+            total: result.count
         })
     }, function(err){
         res.status(500);
