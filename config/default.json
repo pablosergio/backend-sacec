@@ -3,6 +3,7 @@
     "log" : {
       "fileName" : "api-error-logs.log",
       "logsDirectory" : "logs"
-    }
+    },
+    "success": "Proceso ejecutado satisfactoriamente"
   }
 }

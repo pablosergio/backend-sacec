@@ -2,8 +2,8 @@
  * Created by Sergio on 10/12/2016.
  */
 var departamentoService = require('../services/departamentoService.js');
-var tokenService = require('../services/tokenService');
-var jwt         = require('jsonwebtoken');
+var tokenService        = require('../services/tokenService');
+var jwt                 = require('jsonwebtoken');
 
 var departamentoHandler = function() {
     //this.createStudent = handleCreateStudentRequest;

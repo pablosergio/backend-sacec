@@ -61,6 +61,10 @@ module.exports = {
         "email": {
             type: Seq.STRING(70),
             field: "email"
+        },
+        "fechaRegistro": {
+            type: Seq.DATE,
+            field: "fecha_registro"
         }
     },
     relations: [{
