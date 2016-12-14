@@ -93,29 +93,15 @@ module.exports = {
         }
     }, {
         type: "belongsToMany",
-        model: "public.modeloDepto",
+        model: "public.modeloDepartamento",
         schema: "public",
-        table: "modelo_depto",
+        table: "modelo_departamento",
         source: "generator",
         details: {
-            as: "departamentosPropietarioIdFkeyModelos",
+            as: "departamentosPropietarioIdFkeyModeloDepartamentos",
             foreignKey: "propietario_id",
-            otherKey: "modelo_id",
+            otherKey: "modelo_departamento_id",
             through: "departamentos",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }, {
-        type: "belongsToMany",
-        model: "public.departamentos",
-        schema: "public",
-        table: "departamentos",
-        source: "generator",
-        details: {
-            as: "propietarioDepartamentoPropietarioIdFkeyDepartamentos",
-            foreignKey: "propietario_id",
-            otherKey: "departamento_id",
-            through: "propietario_departamento",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }

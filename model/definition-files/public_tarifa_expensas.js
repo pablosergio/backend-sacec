@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("deudaExpensasTarifaIdFkeys").onDelete = 'CASCADE'; 
-util.getAttribute("tarifaId").comment = 'This is the comment'; 
+util.getRelation("deudaExpensasTarifaExpensaIdFkeys").onDelete = 'CASCADE'; 
+util.getAttribute("tarifaExpensaId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -32,9 +32,9 @@ module.exports = {
         timestamps: false
     },
     attributes: {
-        "tarifaId": {
+        "tarifaExpensaId": {
             type: Seq.INTEGER,
-            field: "tarifa_id",
+            field: "tarifa_expensa_id",
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
@@ -45,12 +45,12 @@ module.exports = {
             field: "gestion",
             allowNull: false
         },
-        "modeloId": {
+        "modeloDepartamentoId": {
             type: Seq.INTEGER,
-            field: "modelo_id",
+            field: "modelo_departamento_id",
             references: {
-                model: "public.modeloDepto",
-                key: "modelo_id"
+                model: "public.modeloDepartamento",
+                key: "modelo_departamento_id"
             }
         },
         "precio": {
@@ -70,20 +70,20 @@ module.exports = {
         table: "deuda_expensas",
         source: "generator",
         details: {
-            as: "deudaExpensasTarifaIdFkeys",
-            foreignKey: "tarifa_id",
+            as: "deudaExpensasTarifaExpensaIdFkeys",
+            foreignKey: "tarifa_expensa_id",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
     }, {
         type: "belongsTo",
-        model: "public.modeloDepto",
+        model: "public.modeloDepartamento",
         schema: "public",
-        table: "modelo_depto",
+        table: "modelo_departamento",
         source: "generator",
         details: {
-            as: "modelo",
-            foreignKey: "modelo_id",
+            as: "modeloDepartamento",
+            foreignKey: "modelo_departamento_id",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
@@ -94,8 +94,8 @@ module.exports = {
         table: "departamentos",
         source: "generator",
         details: {
-            as: "deudaExpensasTarifaIdFkeyDepartamentos",
-            foreignKey: "tarifa_id",
+            as: "deudaExpensasTarifaExpensaIdFkeyDepartamentos",
+            foreignKey: "tarifa_expensa_id",
             otherKey: "departamento_id",
             through: "deuda_expensas",
             onDelete: "NO ACTION",

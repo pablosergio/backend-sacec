@@ -18,7 +18,7 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("departamento").onDelete = 'CASCADE'; 
+util.getRelation("propietario").onDelete = 'CASCADE'; 
 util.getAttribute("propietarioDepartamentoId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
@@ -50,11 +50,7 @@ module.exports = {
         },
         "departamentoId": {
             type: Seq.INTEGER,
-            field: "departamento_id",
-            references: {
-                model: "public.departamentos",
-                key: "departamento_id"
-            }
+            field: "departamento_id"
         },
         "estado": {
             type: Seq.STRING(50),
@@ -66,18 +62,6 @@ module.exports = {
         }
     },
     relations: [{
-        type: "belongsTo",
-        model: "public.departamentos",
-        schema: "public",
-        table: "departamentos",
-        source: "generator",
-        details: {
-            as: "departamento",
-            foreignKey: "departamento_id",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }, {
         type: "belongsTo",
         model: "public.propietarios",
         schema: "public",

@@ -9,9 +9,12 @@
 // call the packages we need
 var express = require('express');        // call express
 var app = express();                 // define our app using express
-var departamentoHandler = require('./handlers/departamentoHandler');
-var propietarioHandler = require('./handlers/propietarioHandler');
+
 var loginHandler = require('./handlers/loginHandler');
+var propietarioHandler = require('./handlers/propietarioHandler');
+var modeloDepartamentoHandler = require('./handlers/modeloDepartamentoHandler');
+var departamentoHandler = require('./handlers/departamentoHandler');
+
 var routes = require('./routes');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -59,8 +62,9 @@ app.use('/restapi', router);
 //Define route handlers
 var handlers = {
     login: new loginHandler(),
-    departamento: new departamentoHandler(),
-    propietario: new propietarioHandler()
+    propietario: new propietarioHandler(),
+    modeloDepartamento: new modeloDepartamentoHandler(),
+    departamento: new departamentoHandler()
 };
 
 function start() {

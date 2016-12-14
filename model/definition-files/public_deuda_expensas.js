@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("pagoExpensasDuedaIdFkeys").onDelete = 'CASCADE'; 
-util.getAttribute("deudaId").comment = 'This is the comment'; 
+util.getRelation("departamento").onDelete = 'CASCADE'; 
+util.getAttribute("deudaExpensaId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -32,9 +32,9 @@ module.exports = {
         timestamps: false
     },
     attributes: {
-        "deudaId": {
+        "deudaExpensaId": {
             type: Seq.INTEGER,
-            field: "deuda_id",
+            field: "deuda_expensa_id",
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
@@ -42,22 +42,25 @@ module.exports = {
         },
         "mes": {
             type: Seq.STRING(15),
-            field: "mes"
+            field: "mes",
+            allowNull: false
         },
         "departamentoId": {
             type: Seq.INTEGER,
             field: "departamento_id",
+            allowNull: false,
             references: {
                 model: "public.departamentos",
                 key: "departamento_id"
             }
         },
-        "tarifaId": {
+        "tarifaExpensaId": {
             type: Seq.INTEGER,
-            field: "tarifa_id",
+            field: "tarifa_expensa_id",
+            allowNull: false,
             references: {
                 model: "public.tarifaExpensas",
-                key: "tarifa_id"
+                key: "tarifa_expensa_id"
             }
         },
         "estado": {
@@ -65,24 +68,12 @@ module.exports = {
             field: "estado",
             allowNull: false
         },
-        "pagoId": {
+        "pagoExpensaId": {
             type: Seq.INTEGER,
-            field: "pago_id"
+            field: "pago_expensa_id"
         }
     },
     relations: [{
-        type: "hasMany",
-        model: "public.pagoExpensas",
-        schema: "public",
-        table: "pago_expensas",
-        source: "generator",
-        details: {
-            as: "pagoExpensasDuedaIdFkeys",
-            foreignKey: "dueda_id",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }, {
         type: "belongsTo",
         model: "public.departamentos",
         schema: "public",
@@ -101,8 +92,8 @@ module.exports = {
         table: "tarifa_expensas",
         source: "generator",
         details: {
-            as: "tarifa",
-            foreignKey: "tarifa_id",
+            as: "tarifaExpensa",
+            foreignKey: "tarifa_expensa_id",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }

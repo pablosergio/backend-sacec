@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("dueda").onDelete = 'CASCADE'; 
-util.getAttribute("pagoId").comment = 'This is the comment'; 
+
+util.getAttribute("pagoExpensaId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -32,22 +32,18 @@ module.exports = {
         timestamps: false
     },
     attributes: {
-        "pagoId": {
+        "pagoExpensaId": {
             type: Seq.INTEGER,
-            field: "pago_id",
+            field: "pago_expensa_id",
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
             unique: "pago_expensas_pk"
         },
-        "duedaId": {
+        "duedaExpensaId": {
             type: Seq.INTEGER,
-            field: "dueda_id",
-            allowNull: false,
-            references: {
-                model: "public.deudaExpensas",
-                key: "dueda_id"
-            }
+            field: "dueda_expensa_id",
+            allowNull: false
         },
         "fechaPago": {
             type: Seq.DATE,
@@ -62,17 +58,5 @@ module.exports = {
             field: "observacion"
         }
     },
-    relations: [{
-        type: "belongsTo",
-        model: "public.deudaExpensas",
-        schema: "public",
-        table: "deuda_expensas",
-        source: "generator",
-        details: {
-            as: "dueda",
-            foreignKey: "dueda_id",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }]
+    relations: []
 };

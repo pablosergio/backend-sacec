@@ -1,25 +1,20 @@
 {
     "public.departamentos": {
         "belongsTo": {
-            "modelo": null,
+            "modeloDepartamento": null,
             "propietario": null
         },
         "belongsToMany": {
-            "deudaExpensasDepartamentoIdFkeyTarifas": null,
-            "propietarioDepartamentoDepartamentoIdFkeyPropietarios": null
+            "deudaExpensasDepartamentoIdFkeyTarifaExpensas": null
         },
         "hasMany": {
-            "deudaExpensasDepartamentoIdFkeys": null,
-            "propietarioDepartamentoDepartamentoIdFkeys": null
+            "deudaExpensasDepartamentoIdFkeys": null
         }
     },
     "public.deudaExpensas": {
         "belongsTo": {
             "departamento": null,
-            "tarifa": null
-        },
-        "hasMany": {
-            "pagoExpensasDuedaIdFkeys": null
+            "tarifaExpensa": null
         }
     },
     "public.menuOpciones": {
@@ -34,30 +29,23 @@
             "usuarioMenuOpcionesMenuOpcionIdFkeys": null
         }
     },
-    "public.modeloDepto": {
+    "public.modeloDepartamento": {
         "belongsToMany": {
-            "departamentosModeloIdFkeyPropietarios": null
+            "departamentosModeloDepartamentoIdFkeyPropietarios": null
         },
         "hasMany": {
-            "departamentosModeloIdFkeys": null,
-            "tarifaExpensasModeloIdFkeys": null
-        }
-    },
-    "public.pagoExpensas": {
-        "belongsTo": {
-            "dueda": null
+            "departamentosModeloDepartamentoIdFkeys": null,
+            "tarifaExpensasModeloDepartamentoFkeys": null
         }
     },
     "public.propietarioDepartamento": {
         "belongsTo": {
-            "departamento": null,
             "propietario": null
         }
     },
     "public.propietarios": {
         "belongsToMany": {
-            "departamentosPropietarioIdFkeyModelos": null,
-            "propietarioDepartamentoPropietarioIdFkeyDepartamentos": null
+            "departamentosPropietarioIdFkeyModeloDepartamentos": null
         },
         "hasMany": {
             "departamentosPropietarioIdFkeys": null,
@@ -66,13 +54,13 @@
     },
     "public.tarifaExpensas": {
         "belongsTo": {
-            "modelo": null
+            "modeloDepartamento": null
         },
         "belongsToMany": {
-            "deudaExpensasTarifaIdFkeyDepartamentos": null
+            "deudaExpensasTarifaExpensaIdFkeyDepartamentos": null
         },
         "hasMany": {
-            "deudaExpensasTarifaIdFkeys": null
+            "deudaExpensasTarifaExpensaIdFkeys": null
         }
     },
     "public.usuarioMenuOpciones": {

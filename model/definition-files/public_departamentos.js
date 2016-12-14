@@ -44,12 +44,12 @@ module.exports = {
             type: Seq.STRING(50),
             field: "nombre"
         },
-        "modeloId": {
+        "modeloDepartamentoId": {
             type: Seq.INTEGER,
-            field: "modelo_id",
+            field: "modelo_departamento_id",
             references: {
-                model: "public.modeloDepto",
-                key: "modelo_id"
+                model: "public.modeloDepartamento",
+                key: "modelo_departamento_id"
             }
         },
         "propietarioId": {
@@ -63,6 +63,10 @@ module.exports = {
         "cantidadHabitantes": {
             type: Seq.INTEGER,
             field: "cantidad_habitantes"
+        },
+        "fechaRegistro": {
+            type: Seq.DATE,
+            field: "fecha_registro"
         }
     },
     relations: [{
@@ -78,26 +82,14 @@ module.exports = {
             onUpdate: "NO ACTION"
         }
     }, {
-        type: "hasMany",
-        model: "public.propietarioDepartamento",
-        schema: "public",
-        table: "propietario_departamento",
-        source: "generator",
-        details: {
-            as: "propietarioDepartamentoDepartamentoIdFkeys",
-            foreignKey: "departamento_id",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }, {
         type: "belongsTo",
-        model: "public.modeloDepto",
+        model: "public.modeloDepartamento",
         schema: "public",
-        table: "modelo_depto",
+        table: "modelo_departamento",
         source: "generator",
         details: {
-            as: "modelo",
-            foreignKey: "modelo_id",
+            as: "modeloDepartamento",
+            foreignKey: "modelo_departamento_id",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
@@ -120,24 +112,10 @@ module.exports = {
         table: "tarifa_expensas",
         source: "generator",
         details: {
-            as: "deudaExpensasDepartamentoIdFkeyTarifas",
+            as: "deudaExpensasDepartamentoIdFkeyTarifaExpensas",
             foreignKey: "departamento_id",
-            otherKey: "tarifa_id",
+            otherKey: "tarifa_expensa_id",
             through: "deuda_expensas",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }, {
-        type: "belongsToMany",
-        model: "public.propietarios",
-        schema: "public",
-        table: "propietarios",
-        source: "generator",
-        details: {
-            as: "propietarioDepartamentoDepartamentoIdFkeyPropietarios",
-            foreignKey: "departamento_id",
-            otherKey: "propietario_id",
-            through: "propietario_departamento",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
