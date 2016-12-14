@@ -3,18 +3,6 @@
         "belongsTo": {
             "modeloDepartamento": null,
             "propietario": null
-        },
-        "belongsToMany": {
-            "deudaExpensasDepartamentoIdFkeyTarifaExpensas": null
-        },
-        "hasMany": {
-            "deudaExpensasDepartamentoIdFkeys": null
-        }
-    },
-    "public.deudaExpensas": {
-        "belongsTo": {
-            "departamento": null,
-            "tarifaExpensa": null
         }
     },
     "public.menuOpciones": {
@@ -55,12 +43,6 @@
     "public.tarifaExpensas": {
         "belongsTo": {
             "modeloDepartamento": null
-        },
-        "belongsToMany": {
-            "deudaExpensasTarifaExpensaIdFkeyDepartamentos": null
-        },
-        "hasMany": {
-            "deudaExpensasTarifaExpensaIdFkeys": null
         }
     },
     "public.usuarioMenuOpciones": {

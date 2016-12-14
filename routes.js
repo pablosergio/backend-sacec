@@ -18,8 +18,12 @@ function setup(router, handlers) {
     router.post('/modelodepartamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.modeloDepartamento.createModeloDepartamento);
     router.put('/modelodepartamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.modeloDepartamento.updateModeloDepartamento);
     router.delete('/modelodepartamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.modeloDepartamento.deleteModeloDepartamento);
-    
+    /* Routes for  Departamentos */
     router.get('/departamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.departamento.getDepartamentos);
+    router.post('/departamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.departamento.createDepartamento);
+    router.put('/departamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.departamento.updateDepartamento);
+    router.delete('/departamentos', jwt({secret: process.env.TOKEN_SECRET}), handlers.departamento.deleteDepartamento);
+    
 
 }
 

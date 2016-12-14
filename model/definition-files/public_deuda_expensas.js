@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("departamento").onDelete = 'CASCADE'; 
-util.getAttribute("deudaExpensaId").comment = 'This is the comment'; 
+
+util.getAttribute("deudaId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -32,9 +32,9 @@ module.exports = {
         timestamps: false
     },
     attributes: {
-        "deudaExpensaId": {
+        "deudaId": {
             type: Seq.INTEGER,
-            field: "deuda_expensa_id",
+            field: "deuda_id",
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
@@ -42,60 +42,25 @@ module.exports = {
         },
         "mes": {
             type: Seq.STRING(15),
-            field: "mes",
-            allowNull: false
+            field: "mes"
         },
         "departamentoId": {
             type: Seq.INTEGER,
-            field: "departamento_id",
-            allowNull: false,
-            references: {
-                model: "public.departamentos",
-                key: "departamento_id"
-            }
+            field: "departamento_id"
         },
-        "tarifaExpensaId": {
+        "tarifaId": {
             type: Seq.INTEGER,
-            field: "tarifa_expensa_id",
-            allowNull: false,
-            references: {
-                model: "public.tarifaExpensas",
-                key: "tarifa_expensa_id"
-            }
+            field: "tarifa_id"
         },
         "estado": {
             type: Seq.STRING(25),
             field: "estado",
             allowNull: false
         },
-        "pagoExpensaId": {
+        "pagoId": {
             type: Seq.INTEGER,
-            field: "pago_expensa_id"
+            field: "pago_id"
         }
     },
-    relations: [{
-        type: "belongsTo",
-        model: "public.departamentos",
-        schema: "public",
-        table: "departamentos",
-        source: "generator",
-        details: {
-            as: "departamento",
-            foreignKey: "departamento_id",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }, {
-        type: "belongsTo",
-        model: "public.tarifaExpensas",
-        schema: "public",
-        table: "tarifa_expensas",
-        source: "generator",
-        details: {
-            as: "tarifaExpensa",
-            foreignKey: "tarifa_expensa_id",
-            onDelete: "NO ACTION",
-            onUpdate: "NO ACTION"
-        }
-    }]
+    relations: []
 };

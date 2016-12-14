@@ -51,8 +51,7 @@ module.exports = {
         },
         "dormitorios": {
             type: Seq.INTEGER,
-            field: "dormitorios",
-            allowNull: false
+            field: "dormitorios"
         },
         "fechaRegistro": {
             type: Seq.DATE,
