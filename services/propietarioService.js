@@ -14,16 +14,41 @@ module.exports = function(connection){
     var propietarios = db.model('public.propietarios');
 
 
-    var getAllPropietarios = function(filter, paging){
+    var getAllPropietarios = function(filter, paging, order){
         return propietarios.findAndCountAll({
              where: filter,
              limit: paging.limit,
-             offset: paging.start
+             offset: paging.start,
+             order: order
         })
+    };
+
+    var createPropietario = function(nuevoPropietario){
+          var deferred = q.defer();  
+          propietarios
+            .findOrCreate({where: nuevoPropietario})
+            .spread(function(propietario, created) {
+                deferred.resolve({ propietario: propietario, created: created})
+          })
+
+        return deferred.promise;
+    };
+
+    var updatePropietario = function(propietario){
+          return propietarios.update(propietario, { where: { propietarioId: propietario.propietarioId }});
+          
+    };
+
+      var deletePropietario = function(propietario){
+          return propietarios.destroy({ where: { propietarioId: propietario.propietarioId }});
+          
     };
 
 
     return {
         getAllPropietarios: getAllPropietarios,
+        createPropietario: createPropietario,
+        updatePropietario: updatePropietario,
+        deletePropietario: deletePropietario
     }
 };
