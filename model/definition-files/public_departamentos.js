@@ -18,7 +18,7 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("modeloDepartamento").onDelete = 'CASCADE'; 
+util.getRelation("deudasDepartamentoIdFkeys").onDelete = 'CASCADE'; 
 util.getAttribute("departamentoId").comment = 'This is the comment'; 
 
 ------------------------------------------------------------------------------------*/
@@ -70,6 +70,18 @@ module.exports = {
         }
     },
     relations: [{
+        type: "hasMany",
+        model: "public.deudas",
+        schema: "public",
+        table: "deudas",
+        source: "generator",
+        details: {
+            as: "deudasDepartamentoIdFkeys",
+            foreignKey: "departamento_id",
+            onDelete: "NO ACTION",
+            onUpdate: "NO ACTION"
+        }
+    }, {
         type: "belongsTo",
         model: "public.modeloDepartamento",
         schema: "public",
@@ -90,6 +102,20 @@ module.exports = {
         details: {
             as: "propietario",
             foreignKey: "propietario_id",
+            onDelete: "NO ACTION",
+            onUpdate: "NO ACTION"
+        }
+    }, {
+        type: "belongsToMany",
+        model: "public.estructuraTarifaria",
+        schema: "public",
+        table: "estructura_tarifaria",
+        source: "generator",
+        details: {
+            as: "deudasDepartamentoIdFkeyEstructuraTarifaria",
+            foreignKey: "departamento_id",
+            otherKey: "estructura_tarifaria_id",
+            through: "deudas",
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }

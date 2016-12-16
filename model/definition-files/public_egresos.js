@@ -40,10 +40,6 @@ module.exports = {
             allowNull: false,
             unique: "egresos_pk"
         },
-        "fechaEgreso": {
-            type: Seq.DATE,
-            field: "fecha_egreso"
-        },
         "tipoEgreso": {
             type: Seq.STRING(250),
             field: "tipo_egreso",
@@ -54,13 +50,21 @@ module.exports = {
             field: "descripcion"
         },
         "totalEgreso": {
-            type: Seq.DECIMAL,
+            type: Seq.DECIMAL(10, 2),
             field: "total_egreso",
             allowNull: false
         },
         "numeroComprobante": {
             type: Seq.STRING(250),
             field: "numero_comprobante"
+        },
+        "observacion": {
+            type: Seq.STRING(500),
+            field: "observacion"
+        },
+        "fechaRegistro": {
+            type: Seq.DATE,
+            field: "fecha_registro"
         }
     },
     relations: []

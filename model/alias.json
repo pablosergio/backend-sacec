@@ -3,6 +3,32 @@
         "belongsTo": {
             "modeloDepartamento": null,
             "propietario": null
+        },
+        "belongsToMany": {
+            "deudasDepartamentoIdFkeyEstructuraTarifaria": null
+        },
+        "hasMany": {
+            "deudasDepartamentoIdFkeys": null
+        }
+    },
+    "public.deudas": {
+        "belongsTo": {
+            "departamento": null,
+            "estructuraTarifarium": null
+        },
+        "hasMany": {
+            "pagosDeudaIdFkeys": null
+        }
+    },
+    "public.estructuraTarifaria": {
+        "belongsTo": {
+            "modeloDepartamento": null
+        },
+        "belongsToMany": {
+            "deudasEstructuraTarifariaIdFkeyDepartamentos": null
+        },
+        "hasMany": {
+            "deudasEstructuraTarifariaIdFkeys": null
         }
     },
     "public.menuOpciones": {
@@ -23,7 +49,13 @@
         },
         "hasMany": {
             "departamentosModeloDepartamentoIdFkeys": null,
+            "estructuraTarifariaModeloDepartamentoFkeys": null,
             "tarifaExpensasModeloDepartamentoFkeys": null
+        }
+    },
+    "public.pagos": {
+        "belongsTo": {
+            "deuda": null
         }
     },
     "public.propietarioDepartamento": {

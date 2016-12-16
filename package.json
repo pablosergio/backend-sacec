@@ -30,6 +30,7 @@
     "express-validator": "^2.19.1",
     "express-winston": "^1.2.0",
     "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.17.2",
     "pg": "^6.1.0",
     "pg-promise": "^5.5.0",
     "q": "^1.4.1",

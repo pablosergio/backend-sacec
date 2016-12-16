@@ -11,9 +11,14 @@ var express = require('express');        // call express
 var app = express();                 // define our app using express
 
 var loginHandler = require('./handlers/loginHandler');
+var listaHandler = require('./handlers/listaHandler');
 var propietarioHandler = require('./handlers/propietarioHandler');
 var modeloDepartamentoHandler = require('./handlers/modeloDepartamentoHandler');
 var departamentoHandler = require('./handlers/departamentoHandler');
+var estructuraTarifariaHandler = require('./handlers/estructuraTarifariaHandler');
+var deudaHandler = require('./handlers/deudaHandler');
+var pagoHandler = require('./handlers/pagoHandler');
+var egresoHandler = require('./handlers/egresoHandler');
 
 var routes = require('./routes');
 var bodyParser = require('body-parser');
@@ -62,9 +67,14 @@ app.use('/restapi', router);
 //Define route handlers
 var handlers = {
     login: new loginHandler(),
+    lista: new listaHandler(),
     propietario: new propietarioHandler(),
     modeloDepartamento: new modeloDepartamentoHandler(),
-    departamento: new departamentoHandler()
+    departamento: new departamentoHandler(),
+    estructuraTarifaria: new estructuraTarifariaHandler(),
+    deuda: new deudaHandler(),
+    pago: new pagoHandler(),
+    egreso: new egresoHandler()
 };
 
 function start() {

@@ -72,6 +72,18 @@ module.exports = {
         }
     }, {
         type: "hasMany",
+        model: "public.estructuraTarifaria",
+        schema: "public",
+        table: "estructura_tarifaria",
+        source: "generator",
+        details: {
+            as: "estructuraTarifariaModeloDepartamentoFkeys",
+            foreignKey: "modelo_departamento_id",
+            onDelete: "NO ACTION",
+            onUpdate: "NO ACTION"
+        }
+    }, {
+        type: "hasMany",
         model: "public.tarifaExpensas",
         schema: "public",
         table: "tarifa_expensas",
