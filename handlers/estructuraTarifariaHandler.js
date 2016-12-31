@@ -5,6 +5,8 @@ var estructuraTarifariaService = require('../services/estructuraTarifariaService
 var tokenService       = require('../services/tokenService');
 var jwt                = require('jsonwebtoken');
 var cfg                = require('config');
+var _                  = require('lodash');
+var filterService      = require('../services/filterService');      
 
 var estructuraTarifariaHandler = function() {
     this.getEstructuraTarifaria = handleGetEstructuraTarifariaRequest;
@@ -16,7 +18,7 @@ var estructuraTarifariaHandler = function() {
 function handleGetEstructuraTarifariaRequest(req, res, next) {
     var token = tokenService.getToken(req);
     var payload = jwt.decode(token, {complete: true}).payload;
-    var filter = {};
+    var estructura = filterService.removeKeysNull(req.query);
     var paging = {
         limit: req.query.limit || 1000,
         start: req.query.start || 0
@@ -25,7 +27,7 @@ function handleGetEstructuraTarifariaRequest(req, res, next) {
     var order = '"' + req.query.sort + '"' + ' ' +  req.query.dir;
 
     var service = estructuraTarifariaService({username: payload.username, password: payload.password});
-    service.getAllEstructuraTarifaria(filter, paging, order).then(function(result){
+    service.getAllEstructuraTarifaria(estructura, paging, order).then(function(result){
         res.status(200).send({
             success: true,
             rows: result.rows,

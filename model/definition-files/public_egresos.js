@@ -65,6 +65,11 @@ module.exports = {
         "fechaRegistro": {
             type: Seq.DATE,
             field: "fecha_registro"
+        },
+        "fechaEgreso": {
+            type: Seq.DATE,
+            field: "fecha_egreso",
+            allowNull: false
         }
     },
     relations: []

@@ -5,6 +5,8 @@ var modeloDepartamentoService = require('../services/modeloDepartamentoService.j
 var tokenService       = require('../services/tokenService');
 var jwt                = require('jsonwebtoken');
 var cfg                = require('config');
+var _                  = require('lodash');
+var filterService      = require('../services/filterService');      
 
 var modeloDepartamentoHandler = function() {
     this.getModeloDepartamentos = handleGetModeloDepartamentosRequest;
@@ -16,7 +18,7 @@ var modeloDepartamentoHandler = function() {
 function handleGetModeloDepartamentosRequest(req, res, next) {
     var token = tokenService.getToken(req);
     var payload = jwt.decode(token, {complete: true}).payload;
-    var filter = {};
+    var modeloDepartamento = filterService.removeKeysNull(req.query);
     var paging = {
         limit: req.query.limit || 1000,
         start: req.query.start || 0
@@ -25,7 +27,7 @@ function handleGetModeloDepartamentosRequest(req, res, next) {
     var order = '"' + req.query.sort + '"' + ' ' +  req.query.dir;
 
     var service = modeloDepartamentoService({username: payload.username, password: payload.password});
-    service.getAllModeloDepartamentos(filter, paging, order).then(function(result){
+    service.getAllModeloDepartamentos(modeloDepartamento, paging, order).then(function(result){
         res.status(200).send({
             success: true,
             rows: result.rows,

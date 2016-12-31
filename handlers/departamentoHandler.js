@@ -5,6 +5,8 @@ var departamentoService = require('../services/departamentoService.js');
 var tokenService       = require('../services/tokenService');
 var jwt                = require('jsonwebtoken');
 var cfg                = require('config');
+var _                  = require('lodash');
+var filterService      = require('../services/filterService');      
 
 var departamentoHandler = function() {
     this.getDepartamentos = handleGetDepartamentosRequest;
@@ -16,7 +18,7 @@ var departamentoHandler = function() {
 function handleGetDepartamentosRequest(req, res, next) {
     var token = tokenService.getToken(req);
     var payload = jwt.decode(token, {complete: true}).payload;
-    var filter = {};
+    var departamento = filterService.removeKeysNull(req.query);
     var paging = {
         limit: req.query.limit || 1000,
         start: req.query.start || 0
@@ -25,7 +27,7 @@ function handleGetDepartamentosRequest(req, res, next) {
     var order = '"' + req.query.sort + '"' + ' ' +  req.query.dir;
 
     var service = departamentoService({username: payload.username, password: payload.password});
-    service.getAllDepartamentos(filter, paging, order).then(function(result){
+    service.getAllDepartamentos(departamento, paging, order).then(function(result){
         res.status(200).send({
             success: true,
             rows: result.rows,

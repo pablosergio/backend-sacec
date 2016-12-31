@@ -30,7 +30,7 @@ module.exports = function(connection){
                 totalEgreso: egreso.totalEgreso, 
                 numeroComprobante: egreso.numeroComprobante,
                 observacion: egreso.observacion,
-                fechaRegistro: egreso.fechaRegistro
+                fechaEgreso: egreso.fechaEgreso
             });
 
     };
